@@ -29,6 +29,7 @@ export default function Login() {
         .then((response) => {
           localStorage.setItem('visu', JSON.stringify({ token: response.data.token }));
           toast('Bem-vindo(a)!');
+          navigate('/City');
         });
     } catch (err) {
       setError(err.message);
