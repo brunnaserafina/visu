@@ -15,7 +15,10 @@ export default function App() {
 
   return (
     <Router>
-      <Routes>{loading ? <Route path="/" element={<Welcome />} /> : <Route path="/" element={<Login />} />}</Routes>
+      <Routes>
+        {loading ? <Route path="/" element={<Welcome />} /> : <Route path="/" element={<Login />} />}
+
+      </Routes>
     </Router>
   );
 }

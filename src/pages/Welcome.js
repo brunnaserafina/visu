@@ -12,7 +12,7 @@ export default function Welcome() {
 
 const Wrapper = styled.div`
   img {
-    width: 200px;
+    width: 250px;
     align-self: flex-start;
   }
 `;
