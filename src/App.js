@@ -4,6 +4,7 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Welcome from './pages/Welcome';
 import Login from './pages/Login';
 import City from './pages/newPost/City';
+import Date from './pages/newPost/Date';
 
 export default function App() {
   const [loading, setLoading] = useState(true);
@@ -19,6 +20,7 @@ export default function App() {
       <Routes>
         {loading ? <Route path="/" element={<Welcome />} /> : <Route path="/" element={<Login />} />}
         <Route path="/City" element={<City />} />
+        <Route path="/Date" element={<Date />} />
       </Routes>
     </Router>
   );
