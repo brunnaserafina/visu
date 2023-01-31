@@ -5,6 +5,7 @@ import Welcome from './pages/Welcome';
 import Login from './pages/Login';
 import City from './pages/newPost/City';
 import Date from './pages/newPost/Date';
+import Spending from './pages/newPost/Spending';
 
 export default function App() {
   const [loading, setLoading] = useState(true);
@@ -21,6 +22,7 @@ export default function App() {
         {loading ? <Route path="/" element={<Welcome />} /> : <Route path="/" element={<Login />} />}
         <Route path="/City" element={<City />} />
         <Route path="/Date" element={<Date />} />
+        <Route path="/Spending" element={<Spending />} />
       </Routes>
     </Router>
   );

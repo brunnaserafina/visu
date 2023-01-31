@@ -1,22 +1,25 @@
 import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 
-export default function Date() {
+export default function Spending() {
   const navigate = useNavigate();
 
   function nextPage() {
-    navigate('/Spending');
+    navigate('/');
   }
-
   return (
-    <Wrapper>
-      <div>📅</div>
-      <h1>Em que dia você foi viajar?</h1>
-      <input type="date"></input>
-      <h1>Qual foi o último dia de viagem?</h1>
-      <input type="date"></input>
-      <button onClick={nextPage}>OK</button>
-    </Wrapper>
+    <>
+      <Wrapper>
+        <div>💰</div>
+
+        <h1>Quanto você gastou?</h1>
+
+        <input type="number" placeholder="R$"></input>
+        <p>*Resposta não obrigatória</p>
+
+        <button onClick={nextPage}>OK</button>
+      </Wrapper>
+    </>
   );
 }
 
@@ -25,6 +28,10 @@ const Wrapper = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
+
+  p {
+    color: red;
+  }
 
   div {
     font-size: 50px;
@@ -37,12 +44,13 @@ const Wrapper = styled.div`
   }
 
   input {
-    margin-bottom: 10px;
+    color: red;
     height: 30px;
     width: 60vw;
     border: none;
     border-radius: 15px;
     padding: 15px;
+    text-align: center;
   }
 
   button {
@@ -51,5 +59,6 @@ const Wrapper = styled.div`
     background-color: #666666;
     font-size: 18px;
     font-weight: 700;
+    margin-top: 15px;
   }
 `;
