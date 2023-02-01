@@ -19,11 +19,11 @@ export default function Accommodation() {
       <AutoComplete />
 
       <select name="select">
-        <option value="valor1" selected>
+        <option value="" disabled  selected >
           Tipo de estadia
         </option>
-        <option value="valor2">Airbnb</option>
-        <option value="valor3">Hotel</option>
+        <option value="valor1">Airbnb</option>
+        <option value="valor2">Hotel</option>
         <option value="valor3">Outro</option>
       </select>
 
