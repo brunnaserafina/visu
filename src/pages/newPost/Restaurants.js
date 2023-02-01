@@ -17,7 +17,7 @@ export default function Restaurants() {
   }
 
   function nextPage() {
-    navigate('/Restaurants');
+    navigate('/Accommodation');
   }
 
   return (
