@@ -10,6 +10,8 @@ import Attractions from './pages/newPost/Attractions';
 import Restaurants from './pages/newPost/Restaurants';
 import Accommodation from './pages/newPost/Accommodation';
 import Pictures from './pages/newPost/Pictures';
+import Summary from './pages/newPost/Summary';
+import Finish from './pages/newPost/Finish';
 
 export default function App() {
   const [loading, setLoading] = useState(true);
@@ -31,6 +33,8 @@ export default function App() {
         <Route path="/Restaurants" element={<Restaurants />} />
         <Route path="/Accommodation" element={<Accommodation />} />
         <Route path="/Pictures" element={<Pictures />} />
+        <Route path="/Summary" element={<Summary />} />
+        <Route path="/Finish" element={<Finish />} />
       </Routes>
     </Router>
   );

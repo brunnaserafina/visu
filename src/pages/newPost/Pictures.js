@@ -15,7 +15,7 @@ export default function Pictures() {
   }
 
   function nextPage() {
-    navigate('/Pictures');
+    navigate('/Summary');
   }
 
   return (
@@ -32,7 +32,7 @@ export default function Pictures() {
       {Array.from({ length: componentCount }, (_, index) => (
         <MultipliedComponent key={index} />
       ))}
-
+      <p>*Resposta não obrigatória</p>
       <button onClick={nextPage}>OK</button>
     </Wrapper>
   );
@@ -52,6 +52,10 @@ const Wrapper = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
+
+  p {
+    color: red;
+  }
 
   span > button {
     background-color: #d55e58;
