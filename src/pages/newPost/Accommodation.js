@@ -5,9 +5,9 @@ import styled from 'styled-components';
 
 export default function Accommodation() {
   const navigate = useNavigate();
-
+    
   function nextPage() {
-    navigate('/Restaurants');
+    navigate('/Pictures');
   }
 
   return (

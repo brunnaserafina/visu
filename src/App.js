@@ -9,6 +9,7 @@ import Spending from './pages/newPost/Spending';
 import Attractions from './pages/newPost/Attractions';
 import Restaurants from './pages/newPost/Restaurants';
 import Accommodation from './pages/newPost/Accommodation';
+import Pictures from './pages/newPost/Pictures';
 
 export default function App() {
   const [loading, setLoading] = useState(true);
@@ -29,6 +30,7 @@ export default function App() {
         <Route path="/Attractions" element={<Attractions />} />
         <Route path="/Restaurants" element={<Restaurants />} />
         <Route path="/Accommodation" element={<Accommodation />} />
+        <Route path="/Pictures" element={<Pictures />} />
       </Routes>
     </Router>
   );
