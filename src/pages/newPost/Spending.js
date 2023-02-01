@@ -5,7 +5,7 @@ export default function Spending() {
   const navigate = useNavigate();
 
   function nextPage() {
-    navigate('/');
+    navigate('/Attractions');
   }
   return (
     <>
