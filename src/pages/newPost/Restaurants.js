@@ -1,10 +1,10 @@
-import { useNavigate } from 'react-router-dom';
-import { usePlacesWidget } from 'react-google-autocomplete';
-import styled from 'styled-components';
 import { useEffect, useRef, useState } from 'react';
+import { usePlacesWidget } from 'react-google-autocomplete';
 import ReactStars from 'react-rating-stars-component';
+import { useNavigate } from 'react-router-dom';
+import styled from 'styled-components';
 
-export default function Attractions() {
+export default function Restaurants() {
   const [componentCount, setComponentCount] = useState(1);
   const navigate = useNavigate();
 
@@ -22,9 +22,9 @@ export default function Attractions() {
 
   return (
     <Wrapper>
-      <div>🏖️</div>
-      <h1>Adicione os pontos turísticos</h1>
-      <h1>que você visitou e avalie cada um!</h1>
+      <div>🍽️</div>
+      <h1>Adicione os restaurantes que</h1>
+      <h1>você foi e avalie cada um!</h1>
 
       <span>
         <button onClick={() => setComponentCount(componentCount + 1)}>+</button>
@@ -71,7 +71,7 @@ function AutoComplete() {
     autoCompleteRef.current = new window.google.maps.places.Autocomplete(inputRef.current);
   }, []);
 
-  return <input ref={inputRef} placeholder="Ponto Turístico" />;
+  return <input ref={inputRef} placeholder="Restaurante" />;
 }
 
 const Stars = styled.span`
