@@ -1,10 +1,14 @@
+import { useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
-import styled from 'styled-components';
+import PostContext from '../../contexts/PostContext';
+import { Wrapper } from '../../common/WrapperPost';
 
 export default function Summary() {
+  const { summary, setSummary } = useContext(PostContext);
   const navigate = useNavigate();
 
-  function nextPage() {
+  function submit(event) {
+    event.preventDefault();
     navigate('/Finish');
   }
 
@@ -15,47 +19,16 @@ export default function Summary() {
       <h1>Escreva mais sobre</h1>
       <h1>sua experiência</h1>
 
-      <textarea placeholder="Escreva aqui"></textarea>
+      <form onSubmit={submit}>
+        <textarea
+          placeholder="Escreva aqui"
+          value={summary}
+          onChange={(e) => setSummary(e.target.value)}
+          required
+        ></textarea>
 
-      <button onClick={nextPage}>OK</button>
+        <button type="submit">OK</button>
+      </form>
     </Wrapper>
   );
 }
-
-const Wrapper = styled.div`
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-
-  p {
-    color: red;
-  }
-
-  div {
-    font-size: 50px;
-    margin-bottom: 20px;
-  }
-
-  h1 {
-    font-size: 18px;
-    margin-bottom: 8px;
-  }
-
-  textarea {
-    width: 60vw;
-    height: 30vw;
-    border: none;
-    border-radius: 15px;
-    padding: 25px;
-  }
-
-  button {
-    color: white;
-    border: none;
-    background-color: #666666;
-    font-size: 18px;
-    font-weight: 700;
-    margin-top: 15px;
-  }
-`;

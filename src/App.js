@@ -13,6 +13,7 @@ import Pictures from './pages/newPost/Pictures';
 import Summary from './pages/newPost/Summary';
 import Finish from './pages/newPost/Finish';
 import { PostProvider } from './contexts/PostContext';
+import { ToastContainer } from 'react-toastify';
 
 export default function App() {
   const [loading, setLoading] = useState(true);
@@ -24,21 +25,24 @@ export default function App() {
   }, []);
 
   return (
-    <PostProvider>
-      <Router>
-        <Routes>
-          {loading ? <Route path="/" element={<Welcome />} /> : <Route path="/" element={<Login />} />}
-          <Route path="/City" element={<City />} />
-          <Route path="/Date" element={<Date />} />
-          <Route path="/Spending" element={<Spending />} />
-          <Route path="/Attractions" element={<Attractions />} />
-          <Route path="/Restaurants" element={<Restaurants />} />
-          <Route path="/Accommodation" element={<Accommodation />} />
-          <Route path="/Pictures" element={<Pictures />} />
-          <Route path="/Summary" element={<Summary />} />
-          <Route path="/Finish" element={<Finish />} />
-        </Routes>
-      </Router>
-    </PostProvider>
+    <>
+      <ToastContainer />
+      <PostProvider>
+        <Router>
+          <Routes>
+            {loading ? <Route path="/" element={<Welcome />} /> : <Route path="/" element={<Login />} />}
+            <Route path="/City" element={<City />} />
+            <Route path="/Date" element={<Date />} />
+            <Route path="/Spending" element={<Spending />} />
+            <Route path="/Attractions" element={<Attractions />} />
+            <Route path="/Restaurants" element={<Restaurants />} />
+            <Route path="/Accommodation" element={<Accommodation />} />
+            <Route path="/Pictures" element={<Pictures />} />
+            <Route path="/Summary" element={<Summary />} />
+            <Route path="/Finish" element={<Finish />} />
+          </Routes>
+        </Router>
+      </PostProvider>
+    </>
   );
 }

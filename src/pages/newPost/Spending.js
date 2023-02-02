@@ -1,12 +1,19 @@
+import { useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
-import styled from 'styled-components';
+
+import { Wrapper } from '../../common/WrapperPost';
+import PostContext from '../../contexts/PostContext';
 
 export default function Spending() {
   const navigate = useNavigate();
+  const { spent, setSpent } = useContext(PostContext);
 
-  function nextPage() {
+  function submit(event) {
+    event.preventDefault();
+    
     navigate('/Attractions');
   }
+
   return (
     <>
       <Wrapper>
@@ -14,51 +21,18 @@ export default function Spending() {
 
         <h1>Quanto você gastou?</h1>
 
-        <input type="number" placeholder="R$"></input>
-        <p>*Resposta não obrigatória</p>
+        <form onSubmit={submit}>
+          <input
+            type="number"
+            placeholder="R$"
+            value={spent}
+            onChange={(e) => setSpent(e.target.value)}
+            required
+          ></input>
 
-        <button onClick={nextPage}>OK</button>
+          <button type="submit">OK</button>
+        </form>
       </Wrapper>
     </>
   );
 }
-
-const Wrapper = styled.div`
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-
-  p {
-    color: red;
-  }
-
-  div {
-    font-size: 50px;
-    margin-bottom: 20px;
-  }
-
-  h1 {
-    font-size: 18px;
-    margin-bottom: 8px;
-  }
-
-  input {
-    color: red;
-    height: 30px;
-    width: 60vw;
-    border: none;
-    border-radius: 15px;
-    padding: 15px;
-    text-align: center;
-  }
-
-  button {
-    color: white;
-    border: none;
-    background-color: #666666;
-    font-size: 18px;
-    font-weight: 700;
-    margin-top: 15px;
-  }
-`;

@@ -1,71 +1,59 @@
-import styled from 'styled-components';
-import ReactStars from 'react-rating-stars-component';
+import { useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
+import ReactStars from 'react-rating-stars-component';
+import PostContext from '../../contexts/PostContext';
+import { Wrapper } from '../../common/WrapperPost';
+import { Rating } from '../../common/Rating';
 
 export default function Finish() {
   const navigate = useNavigate();
+  const { setAvaliation } = useContext(PostContext);
+  const {
+    cityOrigin,
+    cityDestination,
+    dateStart,
+    dateEnd,
+    spent,
+    summary,
+    avaliation,
+    attractions,
+    restaurants,
+    acommodation,
+    picture,
+  } = useContext(PostContext);
+
+  const body = {
+    cityOrigin,
+    cityDestination,
+    dateStart,
+    dateEnd,
+    spent,
+    summary,
+    avaliation,
+    attractions,
+    restaurants,
+    acommodation,
+    picture,
+  };
 
   const ratingChanged = (newRating) => {
-    console.log(newRating);
+    setAvaliation(newRating);
   };
 
   function nextPage() {
-    navigate('/Pictures');
+    navigate('/');
   }
 
   return (
     <Wrapper>
       <h1>Como você avalia</h1>
-      <h1>sua viagem?</h1>
+      <h1 style={{ marginBottom: '25px' }}>sua viagem?</h1>
 
-      <Stars>
+      <Rating>
         <ReactStars count={5} onChange={ratingChanged} size={40} activeColor="#ffd700" />
-      </Stars>
+      </Rating>
 
       <button onClick={nextPage}>POSTAR</button>
     </Wrapper>
   );
 }
-
-const Stars = styled.span`
-  height: 30px;
-  margin-bottom: 14px;
-`;
-
-const Wrapper = styled.div`
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-
-  p {
-    color: red;
-  }
-
-  div {
-    font-size: 50px;
-    margin-bottom: 20px;
-  }
-
-  h1 {
-    font-size: 18px;
-    margin-bottom: 8px;
-  }
-
-  textarea {
-    width: 60vw;
-    height: 30vw;
-    border: none;
-    border-radius: 15px;
-    padding: 25px;
-  }
-
-  button {
-    color: white;
-    border: none;
-    background-color: #666666;
-    font-size: 18px;
-    font-weight: 700;
-    margin-top: 15px;
-  }
-`;

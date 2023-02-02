@@ -1,61 +1,39 @@
-import styled from 'styled-components';
-import AutoComplete from 'react-google-autocomplete';
-import { useState } from 'react';
+import { useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
+import AutoComplete from 'react-google-autocomplete';
+import PostContext from '../../contexts/PostContext';
+import { Wrapper } from '../../common/WrapperPost';
 
 export default function City() {
   const navigate = useNavigate();
-  const [cityStart, setCityStart] = useState('');
-  const [cityEnd, setCityEnd] = useState('');
+  const { setCityOrigin, setCityDestination } = useContext(PostContext);
 
-  const key = process.env.REACT_APP_GOOGLE_MAPS_API_KEY;
-
-  function nextPage() {
+  function submit(event) {
+    event.preventDefault();
     navigate('/Date');
   }
 
   return (
     <Wrapper>
       <div>🌎</div>
-      <h1>De que cidade você saiu?</h1>
-      <AutoComplete apiKey={key} onPlaceSelected={(place) => setCityStart(place)} />
-      <h1>Para qual cidade você foi?</h1>
-      <AutoComplete apiKey={key} onPlaceSelected={(place) => setCityEnd(place)} />
-      <button onClick={nextPage}>OK</button>
+      <form onSubmit={submit}>
+        <h1>De que cidade você saiu?</h1>
+        <AutoComplete
+          apiKey={process.env.REACT_APP_GOOGLE_MAPS_API_KEY}
+          type="text"
+          onPlaceSelected={(place) => setCityOrigin(place.formatted_address)}
+          required
+        />
+
+        <h1>Para qual cidade você foi?</h1>
+        <AutoComplete
+          apiKey={process.env.REACT_APP_GOOGLE_MAPS_API_KEY}
+          type="text"
+          onPlaceSelected={(place) => setCityDestination(place.formatted_address)}
+          required
+        />
+        <button type="submit">OK</button>
+      </form>
     </Wrapper>
   );
 }
-
-const Wrapper = styled.div`
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-
-  div {
-    font-size: 50px;
-    margin-bottom: 20px;
-  }
-
-  h1 {
-    font-size: 18px;
-    margin-bottom: 8px;
-  }
-
-  input {
-    margin-bottom: 10px;
-    height: 30px;
-    width: 60vw;
-    border: none;
-    border-radius: 15px;
-    padding: 15px;
-  }
-
-  button {
-    color: white;
-    border: none;
-    background-color: #666666;
-    font-size: 18px;
-    font-weight: 700;
-  }
-`;

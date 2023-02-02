@@ -1,22 +1,32 @@
-import { useEffect, useRef, useState } from 'react';
-import { usePlacesWidget } from 'react-google-autocomplete';
-import ReactStars from 'react-rating-stars-component';
+import { useContext, useEffect, useRef, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import styled from 'styled-components';
+import ReactStars from 'react-rating-stars-component';
+import { toast } from 'react-toastify';
+import PostContext from '../../contexts/PostContext';
+import { Wrapper } from '../../common/WrapperPost';
+import { Rating } from '../../common/Rating';
 
 export default function Restaurants() {
   const [componentCount, setComponentCount] = useState(1);
+  const { restaurants, setRestaurants } = useContext(PostContext);
   const navigate = useNavigate();
 
   function removeComponent() {
     if (componentCount === 1) {
-      return;
-    } else {
-      setComponentCount(componentCount - 1);
+      setRestaurants([]);
     }
+    setComponentCount(componentCount - 1);
+    restaurants.pop();
   }
 
-  function nextPage() {
+  function submit(event) {
+    event.preventDefault();
+
+    if (restaurants.length === 0) {
+      toast('Insira pelo menos um restaurante!');
+      return;
+    }
+
     navigate('/Accommodation');
   }
 
@@ -31,39 +41,21 @@ export default function Restaurants() {
         <button onClick={removeComponent}>-</button>
       </span>
 
-      {Array.from({ length: componentCount }, (_, index) => (
-        <MultipliedComponent key={index} />
-      ))}
+      <form onSubmit={submit}>
+        {Array.from({ length: componentCount }, (_, index) => (
+          <MultipliedComponent key={index} />
+        ))}
 
-      <button onClick={nextPage}>OK</button>
+        <button type="submit">OK</button>
+      </form>
     </Wrapper>
   );
 }
 
 function MultipliedComponent() {
-  const ratingChanged = (newRating) => {
-    console.log(newRating);
-  };
-
-  const { ref } = usePlacesWidget({
-    apiKey: 'AIzaSyAsWMR-nOHUR05B-Sk6l66evlsAKHv0_IA',
-    onPlaceSelected: (place) => {
-      console.log(place);
-    },
-  });
-
-  return (
-    <>
-      <AutoComplete />
-
-      <Stars>
-        <ReactStars count={5} onChange={ratingChanged} size={30} activeColor="#ffd700" />
-      </Stars>
-    </>
-  );
-}
-
-function AutoComplete() {
+  const [name, setName] = useState();
+  const { restaurants, setRestaurants } = useContext(PostContext);
+  const [isDisabled, setIsDisabled] = useState(false);
   const autoCompleteRef = useRef();
   const inputRef = useRef();
 
@@ -71,56 +63,33 @@ function AutoComplete() {
     autoCompleteRef.current = new window.google.maps.places.Autocomplete(inputRef.current);
   }, []);
 
-  return <input ref={inputRef} placeholder="Restaurante" />;
+  const ratingChanged = (newRating) => {
+    const existingRestaurant = restaurants.find((obj) => obj.name === name);
+
+    if (existingRestaurant) {
+      existingRestaurant.avaliation = newRating;
+    } else {
+      if (name) setIsDisabled(true);
+
+      setRestaurants([...restaurants, { name: name, avaliation: newRating }]);
+    }
+  };
+
+  return (
+    <>
+      <input
+        ref={inputRef}
+        placeholder="Restaurante"
+        value={name}
+        onBlur={(e) => setName(e.target.value)}
+        disabled={isDisabled}
+        required
+      />
+
+      <Rating>
+        <ReactStars count={5} onChange={ratingChanged} size={30} activeColor="#ffd700" />
+      </Rating>
+    </>
+  );
 }
 
-const Stars = styled.span`
-  height: 30px;
-  margin-bottom: 14px;
-`;
-
-const Wrapper = styled.div`
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-
-  span {
-    font-size: 28px;
-    color: #d55e58;
-  }
-
-  span > button {
-    background-color: #d55e58;
-    margin-left: 5px;
-    margin-bottom: 10px;
-  }
-
-  div {
-    font-size: 50px;
-    margin-bottom: 20px;
-  }
-
-  h1 {
-    font-size: 18px;
-    margin-bottom: 8px;
-  }
-
-  input {
-    margin-bottom: 3px;
-    height: 30px;
-    width: 60vw;
-    border: none;
-    border-radius: 15px;
-    padding: 15px;
-    text-align: center;
-  }
-
-  button {
-    color: white;
-    border: none;
-    background-color: #666666;
-    font-size: 18px;
-    font-weight: 700;
-  }
-`;

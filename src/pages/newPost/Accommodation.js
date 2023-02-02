@@ -1,12 +1,30 @@
-import { useEffect, useRef, useState } from 'react';
-import { usePlacesWidget } from 'react-google-autocomplete';
+import { useContext, useEffect, useRef, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import styled from 'styled-components';
+import ReactStars from 'react-rating-stars-component';
+import PostContext from '../../contexts/PostContext';
+import { Wrapper } from '../../common/WrapperPost';
+import { Rating } from '../../common/Rating';
 
 export default function Accommodation() {
+  const [typeAccommodation, setTypeAccommodation] = useState();
+  const [localization, setLocalization] = useState();
+  const [avaliation, setAvaliation] = useState(0);
+  const { setAccommodation } = useContext(PostContext);
   const navigate = useNavigate();
-    
-  function nextPage() {
+  const autoCompleteRef = useRef();
+  const inputRef = useRef();
+
+  useEffect(() => {
+    autoCompleteRef.current = new window.google.maps.places.Autocomplete(inputRef.current);
+  }, []);
+
+  const ratingChanged = (newRating) => {
+    setAvaliation(newRating);
+  };
+
+  function submit(event) {
+    event.preventDefault();
+    setAccommodation({ localization, type: typeAccommodation, avaliation });
     navigate('/Pictures');
   }
 
@@ -16,80 +34,29 @@ export default function Accommodation() {
       <h1>Informe sobre</h1>
       <h1>sua hospedagem</h1>
 
-      <AutoComplete />
+      <form onSubmit={submit}>
+        <h6>Tipo de estadia:</h6>
+        <select name="select" value={typeAccommodation} onChange={(e) => setTypeAccommodation(e.target.value)} required>
+          <option value="Airbnb">Airbnb</option>
+          <option value="Hotel">Hotel</option>
+          <option value="Outro">Outro</option>
+        </select>
 
-      <select name="select">
-        <option value="" disabled  selected >
-          Tipo de estadia
-        </option>
-        <option value="valor1">Airbnb</option>
-        <option value="valor2">Hotel</option>
-        <option value="valor3">Outro</option>
-      </select>
+        <h6>Localização:</h6>
+        <input
+          ref={inputRef}
+          placeholder="Endereço"
+          value={localization}
+          onBlur={(e) => setLocalization(e.target.value)}
+          required
+        />
 
-      <button onClick={nextPage}>OK</button>
+        <Rating>
+          <ReactStars count={5} onChange={ratingChanged} size={30} activeColor="#ffd700" />
+        </Rating>
+
+        <button type="submit">OK</button>
+      </form>
     </Wrapper>
   );
 }
-
-function AutoComplete() {
-  const autoCompleteRef = useRef();
-  const inputRef = useRef();
-
-  useEffect(() => {
-    autoCompleteRef.current = new window.google.maps.places.Autocomplete(inputRef.current);
-  }, []);
-
-  return <input ref={inputRef} placeholder="Localização" />;
-}
-
-const Stars = styled.span`
-  height: 30px;
-  margin-bottom: 14px;
-`;
-
-const Wrapper = styled.div`
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-
-  select {
-    width: 60vw;
-    border: none;
-    border-radius: 15px;
-    height: 30px;
-    text-align: center;
-    margin-bottom: 10px;
-    color: #666666;
-  }
-
-  div {
-    font-size: 50px;
-    margin-bottom: 20px;
-  }
-
-  h1 {
-    font-size: 18px;
-    margin-bottom: 8px;
-  }
-
-  input {
-    margin-top: 8px;
-    margin-bottom: 5px;
-    height: 30px;
-    width: 60vw;
-    border: none;
-    border-radius: 15px;
-    padding: 15px;
-    text-align: center;
-  }
-
-  button {
-    color: white;
-    border: none;
-    background-color: #666666;
-    font-size: 18px;
-    font-weight: 700;
-  }
-`;

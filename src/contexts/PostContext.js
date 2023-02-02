@@ -8,9 +8,13 @@ export function PostProvider({ children }) {
   const [cityDestination, setCityDestination] = useState('');
   const [dateStart, setDateStart] = useState('');
   const [dateEnd, setDateEnd] = useState('');
-  const [spent, setSpent] = useState(0);
+  const [spent, setSpent] = useState();
   const [summary, setSummary] = useState('');
   const [avaliation, setAvaliation] = useState(0);
+  const [attractions, setAttractions] = useState([]);
+  const [restaurants, setRestaurants] = useState([]);
+  const [acommodation, setAccommodation] = useState({});
+  const [picture, setPicture] = useState([]);
 
   return (
     <PostContext.Provider
@@ -29,6 +33,14 @@ export function PostProvider({ children }) {
         setSummary,
         avaliation,
         setAvaliation,
+        attractions,
+        setAttractions,
+        restaurants,
+        setRestaurants,
+        acommodation,
+        setAccommodation,
+        picture,
+        setPicture,
       }}
     >
       {children}

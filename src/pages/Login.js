@@ -1,19 +1,16 @@
-import { useState } from 'react';
-import { IoLogoGoogle } from 'react-icons/io';
+import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 
 import logo from '../assets/images/logo-visu.png';
+import { toast } from 'react-toastify';
+import { IoLogoGoogle } from 'react-icons/io';
 
+import { postSignIn } from '../services/visu';
 import { app } from '../services/firebase';
 import { getAuth, signInWithPopup, GoogleAuthProvider } from 'firebase/auth';
 
-import { postSignIn } from '../services/visu';
-import { toast } from 'react-toastify';
-import { useNavigate } from 'react-router-dom';
-
 export default function Login() {
   const navigate = useNavigate('');
-  const [error, setError] = useState(null);
 
   const providerGoogle = new GoogleAuthProvider();
   const auth = getAuth(app);
@@ -32,7 +29,6 @@ export default function Login() {
           navigate('/City');
         });
     } catch (err) {
-      setError(err.message);
     }
   };
 
@@ -43,6 +39,7 @@ export default function Login() {
       <p>&</p>
       <img alt="logo" src={logo} />
       <p>INSPIRE-SE EM </p> <p>OUTRAS VIAGENS</p>
+
       <div onClick={handleGoogleLogin}>
         <IoLogoGoogle />
         Acesse com Google
