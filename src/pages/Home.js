@@ -34,29 +34,29 @@ export default function Home() {
 }
 
 function TravelInfo({ id, name, city, date, avaliation }) {
-  const [left, setLeft] = useState(false);
+  const [alignLeft, setAlignLeft] = useState(false);
 
-  const nameByEmail = name.indexOf('@');
-  const nameUser = name.slice(0, nameByEmail);
+  const indexAt = name.indexOf('@');
+  const usernameByEmail = name.slice(0, indexAt);
 
   const dateFormat = date.slice(8, 10) + '/' + date.slice(5, 7) + '/' + date.slice(0, 4);
-  const rating = numberStarsByAvaliation(avaliation);
+  const starsRating = numberStarsByAvaliation(avaliation);
 
   const idTravel = Number(id);
 
   useEffect(() => {
     if (idTravel % 2 === 0) {
-      setLeft(true);
+      setAlignLeft(true);
     }
   }, []);
 
   return (
-    <Container left={left}>
+    <Container alignLeft={alignLeft}>
       <span>
-        <p>@{nameUser}</p>
+        <p>@{usernameByEmail}</p>
         <h1>{city}</h1>
         <h2>{dateFormat}</h2>
-        <>{rating}</>
+        <>{starsRating}</>
       </span>
     </Container>
   );
@@ -94,7 +94,7 @@ const Container = styled.div`
   width: 100vw;
   display: flex;
   flex-direction: column;
-  align-items: ${(props) => (props.left ? 'flex-start' : 'flex-end')};
+  align-items: ${(props) => (props.alignLeft ? 'flex-start' : 'flex-end')};
 
   h1 {
     font-weight: 700;
