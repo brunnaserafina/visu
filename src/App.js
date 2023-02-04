@@ -14,6 +14,7 @@ import Summary from './pages/newPost/Summary';
 import Finish from './pages/newPost/Finish';
 import { PostProvider } from './contexts/PostContext';
 import { ToastContainer } from 'react-toastify';
+import Home from './pages/Home';
 
 export default function App() {
   const [loading, setLoading] = useState(true);
@@ -31,6 +32,7 @@ export default function App() {
         <Router>
           <Routes>
             {loading ? <Route path="/" element={<Welcome />} /> : <Route path="/" element={<Login />} />}
+            <Route path="/Home" element={<Home />} />
             <Route path="/City" element={<City />} />
             <Route path="/Date" element={<Date />} />
             <Route path="/Spending" element={<Spending />} />

@@ -3,11 +3,18 @@ import { BiSearchAlt2 } from 'react-icons/bi';
 import { AiOutlinePlus } from 'react-icons/ai';
 import { BsFillPersonFill } from 'react-icons/bs';
 import styled from 'styled-components';
+import { useNavigate } from 'react-router-dom';
 
 export default function Menu() {
+  const navigate = useNavigate();
+
+  function homeNavigate() {
+    navigate('/Home');
+  }
+
   return (
     <Wrapper>
-      <MdHomeFilled />
+      <MdHomeFilled onClick={homeNavigate} />
       <BiSearchAlt2 />
       <AiOutlinePlus />
       <BsFillPersonFill />

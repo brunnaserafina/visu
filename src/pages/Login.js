@@ -26,9 +26,10 @@ export default function Login() {
         .then((response) => {
           localStorage.setItem('visu', JSON.stringify({ token: response.data.token }));
           toast('Bem-vindo(a)!');
-          navigate('/City');
+          navigate('/Home');
         });
     } catch (err) {
+      console.log(err);
     }
   };
 
@@ -39,7 +40,6 @@ export default function Login() {
       <p>&</p>
       <img alt="logo" src={logo} />
       <p>INSPIRE-SE EM </p> <p>OUTRAS VIAGENS</p>
-
       <div onClick={handleGoogleLogin}>
         <IoLogoGoogle />
         Acesse com Google
@@ -50,6 +50,8 @@ export default function Login() {
 
 const Wrapper = styled.div`
   display: flex;
+  width: 100%;
+  height: 100vh;
   flex-direction: column;
   justify-content: center;
   align-items: center;
