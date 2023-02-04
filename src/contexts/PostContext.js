@@ -13,7 +13,7 @@ export function PostProvider({ children }) {
   const [avaliation, setAvaliation] = useState(0);
   const [attractions, setAttractions] = useState([]);
   const [restaurants, setRestaurants] = useState([]);
-  const [acommodation, setAccommodation] = useState({});
+  const [accommodation, setAccommodation] = useState({});
   const [picture, setPicture] = useState([]);
 
   return (
@@ -37,7 +37,7 @@ export function PostProvider({ children }) {
         setAttractions,
         restaurants,
         setRestaurants,
-        acommodation,
+        accommodation,
         setAccommodation,
         picture,
         setPicture,

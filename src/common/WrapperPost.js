@@ -62,6 +62,8 @@ export const Wrapper = styled.div`
     font-size: 18px;
     font-weight: 700;
     margin-top: 10px;
+    border-radius: 10px;
+    padding: 5px 10px;
   }
 
   h6 {

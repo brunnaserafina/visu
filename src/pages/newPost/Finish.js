@@ -4,6 +4,7 @@ import ReactStars from 'react-rating-stars-component';
 import PostContext from '../../contexts/PostContext';
 import { Wrapper } from '../../common/WrapperPost';
 import { Rating } from '../../common/Rating';
+import Exit from '../../common/Exit';
 
 export default function Finish() {
   const navigate = useNavigate();
@@ -18,7 +19,7 @@ export default function Finish() {
     avaliation,
     attractions,
     restaurants,
-    acommodation,
+    accommodation,
     picture,
   } = useContext(PostContext);
 
@@ -32,7 +33,7 @@ export default function Finish() {
     avaliation,
     attractions,
     restaurants,
-    acommodation,
+    accommodation,
     picture,
   };
 
@@ -45,15 +46,18 @@ export default function Finish() {
   }
 
   return (
-    <Wrapper>
-      <h1>Como você avalia</h1>
-      <h1 style={{ marginBottom: '25px' }}>sua viagem?</h1>
+    <>
+      <Exit />
+      <Wrapper>
+        <h1>Como você avalia</h1>
+        <h1 style={{ marginBottom: '25px' }}>sua viagem?</h1>
 
-      <Rating>
-        <ReactStars count={5} onChange={ratingChanged} size={40} activeColor="#ffd700" />
-      </Rating>
+        <Rating>
+          <ReactStars count={5} onChange={ratingChanged} size={40} activeColor="#ffd700" />
+        </Rating>
 
-      <button onClick={nextPage}>POSTAR</button>
-    </Wrapper>
+        <button onClick={nextPage}>POSTAR</button>
+      </Wrapper>
+    </>
   );
 }

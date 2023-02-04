@@ -1,5 +1,6 @@
 import { useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
+import Exit from '../../common/Exit';
 
 import { Wrapper } from '../../common/WrapperPost';
 import PostContext from '../../contexts/PostContext';
@@ -10,12 +11,13 @@ export default function Spending() {
 
   function submit(event) {
     event.preventDefault();
-    
+
     navigate('/Attractions');
   }
 
   return (
     <>
+      <Exit />
       <Wrapper>
         <div>💰</div>
 
@@ -30,7 +32,7 @@ export default function Spending() {
             required
           ></input>
 
-          <button type="submit">OK</button>
+          <button type="submit">Avançar</button>
         </form>
       </Wrapper>
     </>

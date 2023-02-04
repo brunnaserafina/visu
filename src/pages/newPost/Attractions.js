@@ -5,6 +5,7 @@ import { toast } from 'react-toastify';
 import { Wrapper } from '../../common/WrapperPost';
 import PostContext from '../../contexts/PostContext';
 import { Rating } from '../../common/Rating';
+import Exit from '../../common/Exit';
 
 export default function Attractions() {
   const [componentCount, setComponentCount] = useState(1);
@@ -15,7 +16,7 @@ export default function Attractions() {
     if (componentCount === 1) {
       setAttractions([]);
     }
-    
+
     setComponentCount(componentCount - 1);
     attractions.pop();
   }
@@ -32,24 +33,27 @@ export default function Attractions() {
   }
 
   return (
-    <Wrapper>
-      <div>🏖️</div>
-      <h1>Adicione os pontos turísticos</h1>
-      <h1>que você visitou e avalie cada um!</h1>
+    <>
+      <Exit />
+      <Wrapper>
+        <div>🏖️</div>
+        <h1>Adicione os pontos turísticos</h1>
+        <h1>que você visitou e avalie cada um!</h1>
 
-      <span>
-        <button onClick={() => setComponentCount(componentCount + 1)}>+</button>
-        <button onClick={removeComponent}>-</button>
-      </span>
+        <span>
+          <button onClick={() => setComponentCount(componentCount + 1)}>+</button>
+          <button onClick={removeComponent}>-</button>
+        </span>
 
-      <form onSubmit={submit}>
-        {Array.from({ length: componentCount }, (_, index) => (
-          <MultipliedComponent key={index} />
-        ))}
+        <form onSubmit={submit}>
+          {Array.from({ length: componentCount }, (_, index) => (
+            <MultipliedComponent key={index} />
+          ))}
 
-        <button type="submit">OK</button>
-      </form>
-    </Wrapper>
+          <button type="submit">Avançar</button>
+        </form>
+      </Wrapper>
+    </>
   );
 }
 
@@ -92,4 +96,3 @@ function MultipliedComponent() {
     </>
   );
 }
-

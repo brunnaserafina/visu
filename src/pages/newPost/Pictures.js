@@ -1,6 +1,7 @@
 import { useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
+import Exit from '../../common/Exit';
 import { Wrapper } from '../../common/WrapperPost';
 import PostContext from '../../contexts/PostContext';
 
@@ -21,23 +22,26 @@ export default function Pictures() {
   }
 
   return (
-    <Wrapper>
-      <div>📸</div>
-      <h1>Adicione uma</h1>
-      <h1>foto da sua viagem</h1>
+    <>
+      <Exit />
+      <Wrapper>
+        <div>📸</div>
+        <h1>Adicione uma</h1>
+        <h1>foto da sua viagem</h1>
 
-      <form onSubmit={submit}>
-        <input
-          type="text"
-          placeholder="https://"
-          value={picture}
-          onChange={(e) => {
-            setPicture(e.target.value);
-          }}
-          required
-        />
-        <button type="submit">OK</button>
-      </form>
-    </Wrapper>
+        <form onSubmit={submit}>
+          <input
+            type="text"
+            placeholder="https://"
+            value={picture}
+            onChange={(e) => {
+              setPicture(e.target.value);
+            }}
+            required
+          />
+          <button type="submit">Avançar</button>
+        </form>
+      </Wrapper>
+    </>
   );
 }
