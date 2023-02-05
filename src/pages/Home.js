@@ -100,6 +100,14 @@ const Container = styled.div`
     font-weight: 700;
   }
 
+  p{
+    color: #52b6ff;
+  }
+
+  h2{
+    text-decoration: underline;
+  }
+
   span {
     width: 45vw;
     background-color: white;

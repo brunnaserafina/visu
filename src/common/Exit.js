@@ -1,9 +1,11 @@
 import styled from 'styled-components';
 import Modal from 'react-modal';
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 export default function Exit() {
   const [isOpen, setIsOpen] = useState(false);
+  const navigate = useNavigate();
 
   function openModal() {
     setIsOpen(true);
@@ -13,6 +15,10 @@ export default function Exit() {
 
   function closeModal() {
     setIsOpen(false);
+  }
+
+  function backModal() {
+    navigate('/Home');
   }
 
   return (
@@ -30,7 +36,7 @@ export default function Exit() {
 
           <div>
             <button onClick={closeModal}>Cancelar</button>
-            <button onClick={closeModal}>Confirmar</button>
+            <button onClick={backModal}>Confirmar</button>
           </div>
         </Confirm>
       </Modal>
