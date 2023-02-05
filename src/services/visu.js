@@ -30,4 +30,20 @@ function getTravels() {
   return promise;
 }
 
-export { postSignIn, getTravels };
+function getHistoric() {
+  const config = createHeaders();
+
+  const promise = axios.get(`${BASE_URL}/historic`, config);
+
+  return promise;
+}
+
+function getFavorites() {
+  const config = createHeaders();
+
+  const promise = axios.get(`${BASE_URL}/favorites`, config);
+
+  return promise;
+}
+
+export { postSignIn, getTravels, getHistoric, getFavorites };

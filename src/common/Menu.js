@@ -23,14 +23,19 @@ export default function Menu() {
     navigate('/City');
   }
 
+  function userNavigate() {
+    navigate('/User');
+  }
+
   return (
     <>
       <Wrapper>
         <MdHomeFilled onClick={homeNavigate} />
         <BiSearchAlt2 onClick={searchNavigate} />
         <AiOutlinePlus onClick={() => setNewPost(true)} />
-        <BsFillPersonFill />
+        <BsFillPersonFill onClick={userNavigate} />
       </Wrapper>
+
       {newPost ? (
         <CreateNewPost>
           <div onClick={() => setNewPost(false)}>x</div>
@@ -51,14 +56,14 @@ const CreateNewPost = styled.div`
   width: 100vw;
   height: 20vh;
   background-color: white;
-  position: fixed;
   bottom: 0;
   border-radius: 25px 25px 0px 0px;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  position: absolute;
+  position: fixed;
+  left: 0;
 
   h1 {
     font-weight: 500;

@@ -16,6 +16,7 @@ import { PostProvider } from './contexts/PostContext';
 import { ToastContainer } from 'react-toastify';
 import Home from './pages/Home';
 import Search from './pages/Search';
+import UserAccount from './pages/UserAccount';
 
 export default function App() {
   const [loading, setLoading] = useState(true);
@@ -44,6 +45,7 @@ export default function App() {
             <Route path="/Pictures" element={<Pictures />} />
             <Route path="/Summary" element={<Summary />} />
             <Route path="/Finish" element={<Finish />} />
+            <Route path="/User" element={<UserAccount />} />
           </Routes>
         </Router>
       </PostProvider>

@@ -18,14 +18,22 @@ export default function Login() {
   const handleGoogleLogin = async() => {
     try {
       const responseFirebase = await signInWithPopup(auth, providerGoogle);
+      console.log(responseFirebase);
 
       postSignIn(responseFirebase.user.displayName, responseFirebase.user.email, responseFirebase.user.uid)
         .catch(() => {
           toast('Tente novamente!');
         })
         .then((response) => {
-          localStorage.setItem('visu', JSON.stringify({ token: response.data.token }));
-          toast('Bem-vindo(a)!');
+          localStorage.setItem(
+            'visu',
+            JSON.stringify({
+              token: response.data.token,
+              name: responseFirebase.user.displayName,
+              photo: responseFirebase.user.photoURL,
+              email: responseFirebase.user.email,
+            })
+          );
           navigate('/Home');
         });
     } catch (err) {

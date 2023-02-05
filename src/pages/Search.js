@@ -2,7 +2,6 @@ import Home from './Home';
 import { DebounceInput } from 'react-debounce-input';
 import { useState } from 'react';
 import styled from 'styled-components';
-import { AiOutlineSearch } from 'react-icons/ai';
 
 export default function Search() {
   const [search, setSearch] = useState('');
@@ -24,7 +23,7 @@ export default function Search() {
           debounceTimeout={300}
           onChange={(e) => searchTravel(e.target.value)}
           type="text"
-          placeholder="🔎 Procure viagens (pesquise pela cidade)"
+          placeholder="🔎 Procure viagens (pesquise a cidade)"
         />
       </SearchBar>
       <Home />
