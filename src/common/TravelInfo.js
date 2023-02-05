@@ -1,8 +1,10 @@
 import { useEffect, useState } from 'react';
 import { RiStarSFill, RiStarSLine } from 'react-icons/ri';
+import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 
 export default function TravelInfo({ id, name, city, date, avaliation, center }) {
+  const navigate = useNavigate();
   const [alignLeft, setAlignLeft] = useState(false);
 
   const indexAt = name.indexOf('@');
@@ -19,8 +21,12 @@ export default function TravelInfo({ id, name, city, date, avaliation, center })
     }
   }, []);
 
+  function openTravelPage() {
+    navigate(`/Travel/${id}`);
+  }
+
   return (
-    <Container alignLeft={alignLeft} center={center}>
+    <Container alignLeft={alignLeft} center={center} onClick={openTravelPage}>
       <span>
         <p>@{usernameByEmail}</p>
         <h1>{city}</h1>
@@ -31,7 +37,7 @@ export default function TravelInfo({ id, name, city, date, avaliation, center })
   );
 }
 
-function numberStarsByAvaliation(avaliation) {
+export function numberStarsByAvaliation(avaliation) {
   let stars = [];
 
   for (let i = 0; i < 5; i++) {
@@ -51,10 +57,11 @@ function numberStarsByAvaliation(avaliation) {
   );
 }
 
-const Stars = styled.div`
+const Stars = styled.h5`
   color: #ff707a;
   font-size: 22px;
   display: flex;
+  justify-content: end;
 `;
 
 const Container = styled.div`

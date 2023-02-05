@@ -5,11 +5,12 @@ import PostContext from '../../contexts/PostContext';
 import { Wrapper } from '../../common/WrapperPost';
 import { Rating } from '../../common/Rating';
 import Exit from '../../common/Exit';
+import dayjs from 'dayjs';
 
 export default function Finish() {
   const navigate = useNavigate();
   const { setAvaliation } = useContext(PostContext);
-  const {
+  let {
     cityOrigin,
     cityDestination,
     dateStart,
@@ -23,11 +24,14 @@ export default function Finish() {
     picture,
   } = useContext(PostContext);
 
+  const dateStartFormat = dayjs(dateStart).format('YYYY-MM-DDTHH:mm:ss.SSS[Z]');
+  const dateEndFormat = dayjs(dateEnd).format('YYYY-MM-DDTHH:mm:ss.SSS[Z]');
+
   const body = {
     cityOrigin,
     cityDestination,
-    dateStart,
-    dateEnd,
+    dateStartFormat,
+    dateEndFormat,
     spent,
     summary,
     avaliation,

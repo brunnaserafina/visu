@@ -30,10 +30,10 @@ export default function Menu() {
   return (
     <>
       <Wrapper>
-        <MdHomeFilled onClick={homeNavigate} />
-        <BiSearchAlt2 onClick={searchNavigate} />
-        <AiOutlinePlus onClick={() => setNewPost(true)} />
-        <BsFillPersonFill onClick={userNavigate} />
+        <MdHomeFilled onClick={homeNavigate} cursor={'pointer'} />
+        <BiSearchAlt2 onClick={searchNavigate} cursor={'pointer'} />
+        <AiOutlinePlus onClick={() => setNewPost(true)} cursor={'pointer'} />
+        <BsFillPersonFill onClick={userNavigate} cursor={'pointer'} />
       </Wrapper>
 
       {newPost ? (
@@ -73,8 +73,8 @@ const CreateNewPost = styled.div`
 
   div {
     position: absolute;
-    top: 5vw;
-    left: 8vw;
+    top: 20%;
+    left: 5vw;
     font-weight: 700;
   }
 
@@ -88,6 +88,7 @@ const CreateNewPost = styled.div`
     align-items: center;
     background-color: #666666;
     font-size: 28px;
+    cursor: pointer;
   }
 
   p {

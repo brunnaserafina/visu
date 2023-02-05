@@ -17,6 +17,7 @@ import { ToastContainer } from 'react-toastify';
 import Home from './pages/Home';
 import Search from './pages/Search';
 import UserAccount from './pages/UserAccount';
+import Travel from './pages/Travel';
 
 export default function App() {
   const [loading, setLoading] = useState(true);
@@ -46,6 +47,7 @@ export default function App() {
             <Route path="/Summary" element={<Summary />} />
             <Route path="/Finish" element={<Finish />} />
             <Route path="/User" element={<UserAccount />} />
+            <Route path="/Travel/:id" element={<Travel />} />
           </Routes>
         </Router>
       </PostProvider>
