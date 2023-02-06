@@ -60,6 +60,7 @@ export default function Attractions() {
 function MultipliedComponent() {
   const [place, setPlace] = useState();
   const [isDisabled, setIsDisabled] = useState(false);
+  
   const { attractions, setAttractions } = useContext(PostContext);
   const autoCompleteRef = useRef();
   const inputRef = useRef();

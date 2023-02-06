@@ -58,8 +58,8 @@ export default function Restaurants() {
 
 function MultipliedComponent() {
   const [name, setName] = useState();
-  const { restaurants, setRestaurants } = useContext(PostContext);
   const [isDisabled, setIsDisabled] = useState(false);
+  const { restaurants, setRestaurants } = useContext(PostContext);
   const autoCompleteRef = useRef();
   const inputRef = useRef();
 

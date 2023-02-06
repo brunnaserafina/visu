@@ -1,11 +1,11 @@
 import { useEffect, useState } from 'react';
-import { RiStarSFill, RiStarSLine } from 'react-icons/ri';
 import { useNavigate } from 'react-router-dom';
+import { RiStarSFill, RiStarSLine } from 'react-icons/ri';
 import styled from 'styled-components';
 
 export default function TravelInfo({ index, id, name, city, date, avaliation, center }) {
-  const navigate = useNavigate();
   const [alignLeft, setAlignLeft] = useState(false);
+  const navigate = useNavigate();
 
   const indexAt = name.indexOf('@');
   const usernameByEmail = name.slice(0, indexAt);

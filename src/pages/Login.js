@@ -1,13 +1,11 @@
 import { useNavigate } from 'react-router-dom';
-import styled from 'styled-components';
-
-import logo from '../assets/images/logo-visu.png';
 import { toast } from 'react-toastify';
 import { IoLogoGoogle } from 'react-icons/io';
-
-import { postSignIn } from '../services/visu';
-import { app } from '../services/firebase';
+import styled from 'styled-components';
 import { getAuth, signInWithPopup, GoogleAuthProvider } from 'firebase/auth';
+import { app } from '../services/firebase';
+import logo from '../assets/images/logo-visu.png';
+import { postSignIn } from '../services/visu';
 
 export default function Login() {
   const navigate = useNavigate('');
@@ -37,7 +35,7 @@ export default function Login() {
           navigate('/Home');
         });
     } catch (err) {
-      console.log(err);
+      toast('Não foi possível logar com sua conta. Tente novamente!');
     }
   };
 

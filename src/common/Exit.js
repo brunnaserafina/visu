@@ -1,7 +1,7 @@
-import styled from 'styled-components';
-import Modal from 'react-modal';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import Modal from 'react-modal';
+import styled from 'styled-components';
 
 export default function Exit() {
   const [isOpen, setIsOpen] = useState(false);
@@ -10,8 +10,6 @@ export default function Exit() {
   function openModal() {
     setIsOpen(true);
   }
-
-  function afterOpenModal() {}
 
   function closeModal() {
     setIsOpen(false);
@@ -24,13 +22,7 @@ export default function Exit() {
   return (
     <>
       <Wrapper onClick={openModal}>x</Wrapper>
-      <Modal
-        isOpen={isOpen}
-        onAfterOpen={afterOpenModal}
-        onRequestClose={closeModal}
-        style={customStyles}
-        ariaHideApp={false}
-      >
+      <Modal isOpen={isOpen} onRequestClose={closeModal} style={customStyles} ariaHideApp={false}>
         <Confirm>
           <span>Descartar alterações?</span>
 

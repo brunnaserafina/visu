@@ -1,12 +1,13 @@
 import { useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
 import ReactStars from 'react-rating-stars-component';
+import dayjs from 'dayjs';
 import PostContext from '../../contexts/PostContext';
 import { Wrapper } from '../../common/WrapperPost';
 import { Rating } from '../../common/Rating';
 import Exit from '../../common/Exit';
-import dayjs from 'dayjs';
 import { postNewTravel } from '../../services/visu';
+import { toast } from 'react-toastify';
 
 export default function Finish() {
   const navigate = useNavigate();
@@ -26,14 +27,14 @@ export default function Finish() {
     reset,
   } = useContext(PostContext);
 
-  const dateStartFormat = dayjs(dateStart).format('YYYY-MM-DDTHH:mm:ss.SSS[Z]');
-  const dateEndFormat = dayjs(dateEnd).format('YYYY-MM-DDTHH:mm:ss.SSS[Z]');
+  const dateStartFormatISO = dayjs(dateStart).format('YYYY-MM-DDTHH:mm:ss.SSS[Z]');
+  const dateEndFormatISO = dayjs(dateEnd).format('YYYY-MM-DDTHH:mm:ss.SSS[Z]');
 
   const body = {
     cityOrigin,
     cityDestination,
-    dateStart: dateStartFormat,
-    dateEnd: dateEndFormat,
+    dateStart: dateStartFormatISO,
+    dateEnd: dateEndFormatISO,
     spent: Number(spent),
     summary,
     avaliation,
@@ -49,8 +50,11 @@ export default function Finish() {
 
   function nextPage() {
     postNewTravel(body)
-      .catch((response) => console.log(response))
-      .then(() => navigate('/Home'));
+      .catch(() => toast('Não foi possível postar sua viagem, tente novamente!'))
+      .then(() => {
+        navigate('/Home');
+        reset();
+      });
   }
 
   return (

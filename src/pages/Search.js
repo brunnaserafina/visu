@@ -1,14 +1,12 @@
-import Home from './Home';
-import { DebounceInput } from 'react-debounce-input';
-import { useContext, useEffect, useState } from 'react';
+import { useContext, useState } from 'react';
 import styled from 'styled-components';
+import Home from './Home';
 import TravelContext from '../contexts/TravelContext';
-import FilterTravels from './FilterTravels';
-import PostContext from '../contexts/PostContext';
 
 export default function Search() {
   const [search, setSearch] = useState('');
   const { travels } = useContext(TravelContext);
+  
   const travelFiltered = travels.filter((travel) =>
     travel.city_destination.toLowerCase().includes(search.toLowerCase())
   );

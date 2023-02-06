@@ -3,10 +3,7 @@ import axios from 'axios';
 const BASE_URL = 'http://localhost:4001';
 
 function createHeaders() {
-  //const token = JSON.parse(localStorage.getItem('visu')).token;
-
-  const token =
-    'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsImlhdCI6MTY3NTQ0NTQwMH0.Xvv4rDt-IVJcjkWdAVB3gTcLVIcxfioC2kglRQ3kABg';
+  const token = JSON.parse(localStorage.getItem('visu')).token;
 
   const config = {
     headers: {

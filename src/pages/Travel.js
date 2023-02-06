@@ -1,11 +1,12 @@
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
-import Menu from '../common/Menu';
-import { getFavorite, getTravelInfo, postFavorite, removeFavorite } from '../services/visu';
 import { AiOutlineHeart, AiFillHeart } from 'react-icons/ai';
-import styled from 'styled-components';
-import { numberStarsByAvaliation } from '../common/TravelInfo';
 import { RiArrowDownSFill } from 'react-icons/ri';
+import { toast } from 'react-toastify';
+import styled from 'styled-components';
+import Menu from '../common/Menu';
+import { numberStarsByAvaliation } from '../common/TravelInfo';
+import { getFavorite, getTravelInfo, postFavorite, removeFavorite } from '../services/visu';
 
 export default function Travel() {
   const { id } = useParams();
@@ -13,7 +14,7 @@ export default function Travel() {
 
   useEffect(() => {
     getTravelInfo(id)
-      .catch((response) => console.log(response))
+      .catch(() => toast('Não foi possível carregar a publicação, tente novamente!'))
       .then((response) => {
         setTravelInfo(response.data);
       });
@@ -67,7 +68,7 @@ function ComponentTravel({
 
   useEffect(() => {
     getFavorite(idTravel)
-      .catch()
+      .catch(() => toast('Recarregue a página!'))
       .then((response) => {
         if (response.data[0] === null) {
           setFavorite(false);
@@ -80,13 +81,13 @@ function ComponentTravel({
   function favoriteSubmit() {
     if (favorite) {
       removeFavorite(idTravel)
-        .catch((response) => console.log(response))
+        .catch(() => toast('Tente novamente!'))
         .then(() => {
           setFavorite(false);
         });
     } else {
       postFavorite(idTravel)
-        .catch((response) => console.log(response))
+        .catch(() => toast('Tente novamente!'))
         .then(() => {
           setFavorite(true);
         });
@@ -116,7 +117,7 @@ function ComponentTravel({
       </Cities>
 
       <div>
-        <img src={picture} />
+        <img alt="city" src={picture} />
       </div>
 
       <Accommodation>
@@ -136,10 +137,10 @@ function ComponentTravel({
         </span>
       </Accommodation>
 
-      <Restaurant onClick={() => setOpenRestaurant(!openRestaurant)}>
+      <OpenInfoPlace onClick={() => setOpenRestaurant(!openRestaurant)}>
         {openRestaurant ? (
           <>
-            <h2>Restaurantes:</h2>
+            <h2>Restaurantes</h2>
             <p>
               <RiArrowDownSFill />
             </p>
@@ -154,12 +155,12 @@ function ComponentTravel({
             ))}
           </div>
         )}
-      </Restaurant>
+      </OpenInfoPlace>
 
-      <Restaurant onClick={() => setOpenAttractions(!openAttractions)}>
+      <OpenInfoPlace onClick={() => setOpenAttractions(!openAttractions)}>
         {openAttractions ? (
           <>
-            <h2>Pontos turísticos:</h2>
+            <h2>Pontos turísticos</h2>
             <p>
               <RiArrowDownSFill />
             </p>
@@ -174,7 +175,7 @@ function ComponentTravel({
             ))}
           </div>
         )}
-      </Restaurant>
+      </OpenInfoPlace>
 
       <MoreInfo>
         <h2>
@@ -186,6 +187,22 @@ function ComponentTravel({
   );
 }
 
+const Wrapper = styled.div`
+  width: 100vw;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 30px;
+
+  @media (min-width: 1000px) {
+    width: 40vw;
+  }
+
+  b {
+    font-weight: 700;
+  }
+`;
+
 const Display = styled.div`
   display: flex;
   justify-content: space-between;
@@ -196,14 +213,12 @@ const Display = styled.div`
   padding: 1vw;
   height: max-content;
 
-
-
   @media (min-width: 1000px) {
     width: 38vw;
   }
 `;
 
-const Restaurant = styled.div`
+const OpenInfoPlace = styled.div`
   width: 90vw;
   margin-bottom: 2vh;
   height: min-content;
@@ -327,22 +342,6 @@ const Cities = styled.div`
     font-weight: 700;
     padding: 5px;
     text-align: end;
-  }
-`;
-
-const Wrapper = styled.div`
-  width: 100vw;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  margin-bottom: 30px;
-
-  @media (min-width: 1000px) {
-    width: 40vw;
-  }
-
-  b {
-    font-weight: 700;
   }
 `;
 

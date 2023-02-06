@@ -1,7 +1,6 @@
 import { useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Exit from '../../common/Exit';
-
 import { Wrapper } from '../../common/WrapperPost';
 import PostContext from '../../contexts/PostContext';
 

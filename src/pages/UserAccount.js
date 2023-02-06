@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import { toast } from 'react-toastify';
 import styled from 'styled-components';
 import Menu from '../common/Menu';
 import TravelInfo from '../common/TravelInfo';
@@ -20,7 +21,7 @@ export default function UserAccount() {
 
   useEffect(() => {
     getHistoric()
-      .catch((response) => console.log(response))
+      .catch(() => toast('Não foi possível carregar seu histórico. Tente novamente!'))
       .then((response) => {
         setHistoric(response.data);
       });
@@ -28,7 +29,7 @@ export default function UserAccount() {
 
   useEffect(() => {
     getFavorites()
-      .catch((response) => console.log(response))
+      .catch(() => toast('Não foi possível carregar suas postagens favoritas. Tente novamente!'))
       .then((response) => {
         setFavorites(response.data);
       });

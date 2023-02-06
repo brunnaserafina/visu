@@ -1,11 +1,10 @@
-import { MdHomeFilled } from 'react-icons/md';
-import { BiSearchAlt2 } from 'react-icons/bi';
-import { AiOutlinePlus } from 'react-icons/ai';
-import { BsFillPersonFill } from 'react-icons/bs';
-import styled from 'styled-components';
-import { useNavigate } from 'react-router-dom';
-import { BiWorld } from 'react-icons/bi';
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { AiOutlinePlus } from 'react-icons/ai';
+import { BiSearchAlt2, BiWorld } from 'react-icons/bi';
+import { BsFillPersonFill } from 'react-icons/bs';
+import { MdHomeFilled } from 'react-icons/md';
+import styled from 'styled-components';
 
 export default function Menu() {
   const navigate = useNavigate();

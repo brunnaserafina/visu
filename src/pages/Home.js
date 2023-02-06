@@ -1,8 +1,8 @@
 import React, { useContext, useEffect, useState } from 'react';
+import { toast } from 'react-toastify';
 import Menu from '../common/Menu';
-import { getTravels } from '../services/visu';
-
 import TravelInfo from '../common/TravelInfo';
+import { getTravels } from '../services/visu';
 import TravelContext from '../contexts/TravelContext';
 
 export default function Home({ travelsToShow }) {
@@ -12,7 +12,7 @@ export default function Home({ travelsToShow }) {
 
   useEffect(() => {
     getTravels()
-      .catch((response) => console.log(response))
+      .catch(() => toast('Não foi possível carregar as publicações, tente novamente!'))
       .then((response) => {
         setTravels(response.data);
       });

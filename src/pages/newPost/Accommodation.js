@@ -1,9 +1,7 @@
 import { useContext, useEffect, useRef, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import ReactStars from 'react-rating-stars-component';
 import PostContext from '../../contexts/PostContext';
 import { Wrapper } from '../../common/WrapperPost';
-import { Rating } from '../../common/Rating';
 import Exit from '../../common/Exit';
 
 export default function Accommodation() {
@@ -11,6 +9,7 @@ export default function Accommodation() {
   const [localization, setLocalization] = useState();
   const [avaliation, setAvaliation] = useState(0);
   const { setAccommodation } = useContext(PostContext);
+
   const navigate = useNavigate();
   const autoCompleteRef = useRef();
   const inputRef = useRef();
@@ -18,10 +17,6 @@ export default function Accommodation() {
   useEffect(() => {
     autoCompleteRef.current = new window.google.maps.places.Autocomplete(inputRef.current);
   }, []);
-
-  const ratingChanged = (newRating) => {
-    setAvaliation(newRating);
-  };
 
   function submit(event) {
     event.preventDefault();
