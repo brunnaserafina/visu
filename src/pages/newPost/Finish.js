@@ -6,6 +6,7 @@ import { Wrapper } from '../../common/WrapperPost';
 import { Rating } from '../../common/Rating';
 import Exit from '../../common/Exit';
 import dayjs from 'dayjs';
+import { postNewTravel } from '../../services/visu';
 
 export default function Finish() {
   const navigate = useNavigate();
@@ -30,9 +31,9 @@ export default function Finish() {
   const body = {
     cityOrigin,
     cityDestination,
-    dateStartFormat,
-    dateEndFormat,
-    spent,
+    dateStart: dateStartFormat,
+    dateEnd: dateEndFormat,
+    spent: Number(spent),
     summary,
     avaliation,
     attractions,
@@ -46,7 +47,8 @@ export default function Finish() {
   };
 
   function nextPage() {
-    navigate('/');
+    postNewTravel(body);
+    navigate('/Home');
   }
 
   return (

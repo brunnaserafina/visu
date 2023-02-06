@@ -40,8 +40,8 @@ export default function Travel() {
             center={true}
           />
         ))}
-        <Menu />
       </Wrapper>
+      <Menu />
     </>
   );
 }
@@ -167,6 +167,10 @@ const Display = styled.div`
   width: 82vw;
   margin-bottom: 1px;
   height: 25px;
+
+  @media (min-width: 1000px) {
+    width: 38vw;
+  }
 `;
 
 const Restaurant = styled.div`
@@ -179,6 +183,10 @@ const Restaurant = styled.div`
   align-items: center;
   padding: 0 10px;
   justify-content: space-between;
+
+  @media (min-width: 1000px) {
+    width: 40vw;
+  }
 
   p {
     font-size: 35px;
@@ -209,6 +217,10 @@ const MoreInfo = styled.div`
   h2 {
     margin-bottom: 4px;
   }
+
+  @media (min-width: 1000px) {
+    width: 40vw;
+  }
 `;
 
 const Accommodation = styled.div`
@@ -220,13 +232,18 @@ const Accommodation = styled.div`
   p {
     text-align: end;
   }
+
+  @media (min-width: 1000px) {
+    width: 40vw;
+  }
 `;
 
 const Favorite = styled.span`
-  margin-bottom: 20px;
+  margin-bottom: 2vh;
   font-size: 35px;
   color: #ff707a;
-  margin-top: 5vh;
+  margin-top: 3vh;
+  cursor: pointer;
 `;
 
 const NameAvaliation = styled.div`
@@ -239,6 +256,10 @@ const NameAvaliation = styled.div`
   font-size: 19px;
   margin-bottom: 1vh;
   width: 100vw;
+
+  @media (min-width: 1000px) {
+    width: 50vw;
+  }
 
   h1 {
     text-align: start;
@@ -260,6 +281,10 @@ const Cities = styled.div`
   width: 100vw;
   justify-content: space-between;
 
+  @media (min-width: 1000px) {
+    width: 50vw;
+  }
+
   span:nth-child(1) {
     padding: 5px;
   }
@@ -275,10 +300,14 @@ const Cities = styled.div`
 
 const Wrapper = styled.div`
   width: 100vw;
-  height: 100vh;
   display: flex;
   flex-direction: column;
   align-items: center;
+  margin-bottom: 30px;
+
+  @media (min-width: 1000px) {
+    width: 40vw;
+  }
 
   bold {
     font-weight: 700;
@@ -296,5 +325,13 @@ const WrapperComponentTravel = styled.div`
     height: 30vh;
     border-radius: 20px;
     object-fit: cover;
+
+    @media (min-width: 1000px) {
+      width: 40vw;
+    }
+  }
+
+  @media (min-width: 1000px) {
+    width: 60vw;
   }
 `;

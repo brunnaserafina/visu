@@ -4,8 +4,6 @@ const BASE_URL = 'http://localhost:4001';
 
 function createHeaders() {
   const token = JSON.parse(localStorage.getItem('visu')).token;
-  //const token =
-  //'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsImlhdCI6MTY3NTQ0NTQwMH0.Xvv4rDt-IVJcjkWdAVB3gTcLVIcxfioC2kglRQ3kABg';
 
   const config = {
     headers: {
@@ -54,4 +52,12 @@ function getTravelInfo(id) {
   return promise;
 }
 
-export { postSignIn, getTravels, getHistoric, getFavorites, getTravelInfo };
+function postNewTravel(body) {
+  const config = createHeaders();
+
+  const promise = axios.post(`${BASE_URL}/post-travel`, body, config);
+
+  return promise;
+}
+
+export { postSignIn, getTravels, getHistoric, getFavorites, getTravelInfo, postNewTravel };

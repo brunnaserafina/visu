@@ -76,6 +76,7 @@ const CreateNewPost = styled.div`
     top: 20%;
     left: 5vw;
     font-weight: 700;
+    cursor: pointer;
   }
 
   button {
@@ -95,6 +96,18 @@ const CreateNewPost = styled.div`
     font-size: 15px;
     margin-left: 5px;
   }
+
+  @media (min-width: 1000px) {
+    left: 25%;
+    top: 40%;
+    width: 50vw;
+    border-radius: 25px;
+    background-color: #e5e5e5;
+
+    button {
+      background-color: #666666;
+    }
+  }
 `;
 
 const Wrapper = styled.div`
@@ -108,4 +121,11 @@ const Wrapper = styled.div`
   width: 100vw;
   height: 50px;
   font-size: 30px;
+
+  @media (min-width: 1000px) {
+    flex-direction: column;
+    width: 50px;
+    height: 100vh;
+    left: 0;
+  }
 `;

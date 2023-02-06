@@ -75,6 +75,7 @@ const Container = styled.div`
   h1 {
     font-weight: 700;
     font-size: 18px;
+    text-align: center;
   }
 
   p {
@@ -96,5 +97,13 @@ const Container = styled.div`
     flex-direction: column;
     justify-content: space-evenly;
     align-items: center;
+
+    @media (min-width: 1000px) {
+      width: 25vw;
+    }
+  }
+
+  @media (min-width: 1000px) {
+    width: 60vw;
   }
 `;

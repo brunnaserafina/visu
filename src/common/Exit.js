@@ -63,6 +63,7 @@ const Wrapper = styled.div`
   left: 10vw;
   font-size: 22px;
   color: #666666;
+  cursor: pointer;
 `;
 
 const Confirm = styled.div`

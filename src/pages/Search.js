@@ -46,5 +46,9 @@ const SearchBar = styled.div`
     text-align: center;
     font-size: 15px;
     font-family: 'Lexend Deca', sans-serif;
+
+    @media (min-width: 1000px) {
+      width: 46vw;
+    }
   }
 `;
