@@ -3,7 +3,7 @@ import { RiStarSFill, RiStarSLine } from 'react-icons/ri';
 import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 
-export default function TravelInfo({ id, name, city, date, avaliation, center }) {
+export default function TravelInfo({ index, id, name, city, date, avaliation, center }) {
   const navigate = useNavigate();
   const [alignLeft, setAlignLeft] = useState(false);
 
@@ -13,7 +13,7 @@ export default function TravelInfo({ id, name, city, date, avaliation, center })
   const dateFormat = date.slice(8, 10) + '/' + date.slice(5, 7) + '/' + date.slice(0, 4);
   const starsRating = numberStarsByAvaliation(avaliation);
 
-  const idTravel = Number(id);
+  const idTravel = Number(index);
 
   useEffect(() => {
     if (idTravel % 2 === 0) {
@@ -29,7 +29,7 @@ export default function TravelInfo({ id, name, city, date, avaliation, center })
     <Container alignLeft={alignLeft} center={center} onClick={openTravelPage}>
       <span>
         <p>@{usernameByEmail}</p>
-        <h1>{city}</h1>
+        <h1>{city.replace(', Brasil', '').replace(',', ' -')}</h1>
         <h2>{dateFormat}</h2>
         <>{starsRating}</>
       </span>

@@ -26,6 +26,7 @@ export default function Home() {
           date={travel.date_start}
           avaliation={travel.avaliation}
           center={false}
+          index={index}
         />
       ))}
 
