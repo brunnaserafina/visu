@@ -59,10 +59,6 @@ export default function Accommodation() {
             required
           />
 
-          <Rating>
-            <ReactStars count={5} onChange={ratingChanged} size={30} activeColor="#ffd700" />
-          </Rating>
-
           <button type="submit">Avançar</button>
         </form>
       </Wrapper>
