@@ -16,6 +16,20 @@ export function PostProvider({ children }) {
   const [accommodation, setAccommodation] = useState({});
   const [picture, setPicture] = useState([]);
 
+  const reset = () => {
+    setCityOrigin('');
+    setCityDestination('');
+    setDateStart('');
+    setDateEnd('');
+    setSpent('');
+    setSummary('');
+    setAvaliation(0);
+    setAttractions([]);
+    setRestaurants([]);
+    setAccommodation({});
+    setPicture([]);
+  };
+
   return (
     <PostContext.Provider
       value={{
@@ -41,6 +55,7 @@ export function PostProvider({ children }) {
         setAccommodation,
         picture,
         setPicture,
+        reset,
       }}
     >
       {children}

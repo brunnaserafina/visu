@@ -23,6 +23,7 @@ export default function Finish() {
     restaurants,
     accommodation,
     picture,
+    reset,
   } = useContext(PostContext);
 
   const dateStartFormat = dayjs(dateStart).format('YYYY-MM-DDTHH:mm:ss.SSS[Z]');
@@ -48,6 +49,7 @@ export default function Finish() {
 
   function nextPage() {
     postNewTravel(body);
+    reset();
     navigate('/Home');
   }
 
