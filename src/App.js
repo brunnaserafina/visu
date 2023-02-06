@@ -18,6 +18,7 @@ import Home from './pages/Home';
 import Search from './pages/Search';
 import UserAccount from './pages/UserAccount';
 import Travel from './pages/Travel';
+import { TravelProvider } from './contexts/TravelContext';
 
 export default function App() {
   const [loading, setLoading] = useState(true);
@@ -31,26 +32,28 @@ export default function App() {
   return (
     <>
       <ToastContainer />
-      <PostProvider>
-        <Router>
-          <Routes>
-            {loading ? <Route path="/" element={<Welcome />} /> : <Route path="/" element={<Login />} />}
-            <Route path="/Home" element={<Home />} />
-            <Route path="/Search" element={<Search />} />
-            <Route path="/City" element={<City />} />
-            <Route path="/Date" element={<Date />} />
-            <Route path="/Spending" element={<Spending />} />
-            <Route path="/Attractions" element={<Attractions />} />
-            <Route path="/Restaurants" element={<Restaurants />} />
-            <Route path="/Accommodation" element={<Accommodation />} />
-            <Route path="/Pictures" element={<Pictures />} />
-            <Route path="/Summary" element={<Summary />} />
-            <Route path="/Finish" element={<Finish />} />
-            <Route path="/User" element={<UserAccount />} />
-            <Route path="/Travel/:id" element={<Travel />} />
-          </Routes>
-        </Router>
-      </PostProvider>
+      <TravelProvider>
+        <PostProvider>
+          <Router>
+            <Routes>
+              {loading ? <Route path="/" element={<Welcome />} /> : <Route path="/" element={<Login />} />}
+              <Route path="/Home" element={<Home />} />
+              <Route path="/Search" element={<Search />} />
+              <Route path="/City" element={<City />} />
+              <Route path="/Date" element={<Date />} />
+              <Route path="/Spending" element={<Spending />} />
+              <Route path="/Attractions" element={<Attractions />} />
+              <Route path="/Restaurants" element={<Restaurants />} />
+              <Route path="/Accommodation" element={<Accommodation />} />
+              <Route path="/Pictures" element={<Pictures />} />
+              <Route path="/Summary" element={<Summary />} />
+              <Route path="/Finish" element={<Finish />} />
+              <Route path="/User" element={<UserAccount />} />
+              <Route path="/Travel/:id" element={<Travel />} />
+            </Routes>
+          </Router>
+        </PostProvider>
+      </TravelProvider>
     </>
   );
 }

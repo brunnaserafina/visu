@@ -1,32 +1,29 @@
 import Home from './Home';
 import { DebounceInput } from 'react-debounce-input';
-import { useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import styled from 'styled-components';
+import TravelContext from '../contexts/TravelContext';
+import FilterTravels from './FilterTravels';
+import PostContext from '../contexts/PostContext';
 
 export default function Search() {
   const [search, setSearch] = useState('');
-  const [isLoading, setIsLoading] = useState(false);
-
-  function searchTravel(search) {
-    setIsLoading(true);
-    setSearch(search);
-
-    if (search.length >= 1) {
-    }
-  }
+  const { travels } = useContext(TravelContext);
+  const travelFiltered = travels.filter((travel) =>
+    travel.city_destination.toLowerCase().includes(search.toLowerCase())
+  );
 
   return (
     <>
       <SearchBar>
-        <DebounceInput
-          minLength={1}
-          debounceTimeout={300}
-          onChange={(e) => searchTravel(e.target.value)}
+        <input
+          value={search}
           type="text"
           placeholder="🔎 Procure viagens (pesquise a cidade)"
+          onChange={(e) => setSearch(e.target.value)}
         />
       </SearchBar>
-      <Home />
+      <Home travelsToShow={travelFiltered} />
     </>
   );
 }

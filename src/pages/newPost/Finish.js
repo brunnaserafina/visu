@@ -48,9 +48,9 @@ export default function Finish() {
   };
 
   function nextPage() {
-    postNewTravel(body);
-    reset();
-    navigate('/Home');
+    postNewTravel(body)
+      .catch((response) => console.log(response))
+      .then(() => navigate('/Home'));
   }
 
   return (

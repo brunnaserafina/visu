@@ -107,11 +107,11 @@ function ComponentTravel({
           <h2>
             <b>Origem: </b>
           </h2>
-          <h2>{cityOrigin}</h2>
+          <h2>{cityOrigin.replace(', Brasil', '').replace(',', ' -')}</h2>
         </span>
         <span>
           <h2>Destino:</h2>
-          <h2>{city}</h2>
+          <h2>{city.replace(', Brasil', '').replace(',', ' -')}</h2>
         </span>
       </Cities>
 
@@ -145,14 +145,14 @@ function ComponentTravel({
             </p>
           </>
         ) : (
-          <span>
+          <div>
             <h3>Restaurantes:</h3>
             {restaurants.map((restaurant, index) => (
               <Display key={index}>
-                <h6>{restaurant.name}</h6> <span>{numberStarsByAvaliation(restaurant.avaliation)}</span>
+                <h5>{restaurant.name}</h5> <span>{numberStarsByAvaliation(restaurant.avaliation)}</span>
               </Display>
             ))}
-          </span>
+          </div>
         )}
       </Restaurant>
 
@@ -165,14 +165,14 @@ function ComponentTravel({
             </p>
           </>
         ) : (
-          <span>
+          <div>
             <h3>Pontos turísticos:</h3>
             {attractions.map((restaurant, index) => (
               <Display key={index}>
-                <h6>{restaurant.name}</h6> <span>{numberStarsByAvaliation(restaurant.avaliation)}</span>
+                <h5>{restaurant.name}</h5> <span>{numberStarsByAvaliation(restaurant.avaliation)}</span>
               </Display>
             ))}
-          </span>
+          </div>
         )}
       </Restaurant>
 
@@ -193,6 +193,10 @@ const Display = styled.div`
   width: 82vw;
   margin-bottom: 1px;
   height: 25px;
+  padding: 1vw;
+  height: max-content;
+
+
 
   @media (min-width: 1000px) {
     width: 38vw;
@@ -218,16 +222,18 @@ const Restaurant = styled.div`
     font-size: 35px;
   }
 
-  span {
-    padding: 2vw 0;
+  > div {
+    display: flex;
+    flex-direction: column;
+    height: max-content;
   }
 
   h2 {
     font-weight: 700;
   }
 
-  h3 {
-    margin-bottom: 5px;
+  div > h3 {
+    margin-top: 2vw;
     font-weight: 700;
   }
 

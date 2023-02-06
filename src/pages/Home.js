@@ -1,11 +1,14 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import Menu from '../common/Menu';
 import { getTravels } from '../services/visu';
 
 import TravelInfo from '../common/TravelInfo';
+import TravelContext from '../contexts/TravelContext';
 
-export default function Home() {
-  const [travels, setTravels] = useState([]);
+export default function Home({ travelsToShow }) {
+  const { travels, setTravels } = useContext(TravelContext);
+
+  const maping = travelsToShow ? travelsToShow : travels;
 
   useEffect(() => {
     getTravels()
@@ -17,7 +20,7 @@ export default function Home() {
 
   return (
     <>
-      {travels.map((travel, index) => (
+      {maping.map((travel, index) => (
         <TravelInfo
           key={index}
           id={travel.id}
@@ -34,4 +37,3 @@ export default function Home() {
     </>
   );
 }
-
