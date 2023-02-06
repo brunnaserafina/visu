@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import Menu from '../common/Menu';
-import { getTravelInfo } from '../services/visu';
+import { getFavorite, getTravelInfo, postFavorite, removeFavorite } from '../services/visu';
 import { AiOutlineHeart, AiFillHeart } from 'react-icons/ai';
 import styled from 'styled-components';
 import { numberStarsByAvaliation } from '../common/TravelInfo';
@@ -25,6 +25,7 @@ export default function Travel() {
         {travelInfo.map((travel, index) => (
           <ComponentTravel
             key={index}
+            idTravel={id}
             id={travel.id}
             name={travel.users.name}
             cityOrigin={travel.city_origin}
@@ -57,14 +58,39 @@ function ComponentTravel({
   summary,
   restaurants,
   attractions,
+  idTravel,
 }) {
   const [favorite, setFavorite] = useState(false);
   const [openRestaurant, setOpenRestaurant] = useState(true);
   const [openAttractions, setOpenAttractions] = useState(true);
   const rating = numberStarsByAvaliation(avaliation);
 
+  useEffect(() => {
+    getFavorite(idTravel)
+      .catch()
+      .then((response) => {
+        if (response.data[0] === null) {
+          setFavorite(false);
+        } else {
+          setFavorite(true);
+        }
+      });
+  }, []);
+
   function favoriteSubmit() {
-    setFavorite(!favorite);
+    if (favorite) {
+      removeFavorite(idTravel)
+        .catch((response) => console.log(response))
+        .then(() => {
+          setFavorite(false);
+        });
+    } else {
+      postFavorite(idTravel)
+        .catch((response) => console.log(response))
+        .then(() => {
+          setFavorite(true);
+        });
+    }
   }
 
   return (
@@ -73,13 +99,13 @@ function ComponentTravel({
 
       <NameAvaliation>
         <h1>{name}</h1>
-        <p>{rating}</p>
+        <Rating>{rating}</Rating>
       </NameAvaliation>
 
       <Cities>
         <span>
           <h2>
-            <bold>Origem: </bold>
+            <b>Origem: </b>
           </h2>
           <h2>{cityOrigin}</h2>
         </span>
@@ -96,15 +122,15 @@ function ComponentTravel({
       <Accommodation>
         <span>
           <h2>
-            <bold>Estadia:</bold> {accommodations.type}
+            <b>Estadia:</b> {accommodations.type}
           </h2>
           <h2>
-            <bold>Localização:</bold> {accommodations.localization}
+            <b>Localização:</b> {accommodations.localization}
           </h2>
         </span>
         <span>
           <h2>
-            <bold>Investimento:</bold>
+            <b>Investimento:</b>
           </h2>
           <p>R${spent}</p>
         </span>
@@ -152,7 +178,7 @@ function ComponentTravel({
 
       <MoreInfo>
         <h2>
-          <bold>Mais informações:</bold>
+          <b>Mais informações:</b>
         </h2>
         <h4>{summary}</h4>
       </MoreInfo>
@@ -202,7 +228,7 @@ const Restaurant = styled.div`
 
   h3 {
     margin-bottom: 5px;
-    font-weight: bold;
+    font-weight: 700;
   }
 
   h6 {
@@ -266,11 +292,11 @@ const NameAvaliation = styled.div`
     width: 60%;
     text-transform: uppercase;
   }
+`;
 
-  p {
-    text-align: center;
-    width: 40%;
-  }
+const Rating = styled.div`
+  text-align: center;
+  width: 40%;
 `;
 
 const Cities = styled.div`
@@ -309,7 +335,7 @@ const Wrapper = styled.div`
     width: 40vw;
   }
 
-  bold {
+  b {
     font-weight: 700;
   }
 `;

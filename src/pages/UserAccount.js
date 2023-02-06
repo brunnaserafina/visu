@@ -64,8 +64,8 @@ export default function UserAccount() {
           <Message>
             Você não {message} <br></br>nenhuma viagem ainda :(
           </Message>
-        ) : (
-          componentMap.map((travel, index) => (
+        ) : componentMap === historic ? (
+          historic.map((travel, index) => (
             <TravelInfo
               key={index}
               id={travel.id}
@@ -73,6 +73,18 @@ export default function UserAccount() {
               city={travel.city_destination}
               date={travel.date_start}
               avaliation={travel.avaliation}
+              center={true}
+            />
+          ))
+        ) : (
+          favorites.map((travel, index) => (
+            <TravelInfo
+              key={index}
+              id={travel.travels.id}
+              name={travel.users.email}
+              city={travel.travels.city_destination}
+              date={travel.travels.date_start}
+              avaliation={travel.travels.avaliation}
               center={true}
             />
           ))
