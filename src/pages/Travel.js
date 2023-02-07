@@ -265,6 +265,10 @@ const MoreInfo = styled.div`
     margin-bottom: 4px;
   }
 
+  h4 {
+    text-align: justify;
+  }
+
   @media (min-width: 1000px) {
     width: 40vw;
   }

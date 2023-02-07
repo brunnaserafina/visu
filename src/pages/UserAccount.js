@@ -32,6 +32,7 @@ export default function UserAccount() {
       .catch(() => toast('Não foi possível carregar suas postagens favoritas. Tente novamente!'))
       .then((response) => {
         setFavorites(response.data);
+        console.log(response.data);
       });
   }, []);
 
@@ -82,7 +83,7 @@ export default function UserAccount() {
             <TravelInfo
               key={index}
               id={travel.travels.id}
-              name={travel.users.email}
+              name={travel.travels.users.email}
               city={travel.travels.city_destination}
               date={travel.travels.date_start}
               avaliation={travel.travels.avaliation}
