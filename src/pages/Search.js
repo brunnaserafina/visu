@@ -6,7 +6,7 @@ import TravelContext from '../contexts/TravelContext';
 export default function Search() {
   const [search, setSearch] = useState('');
   const { travels } = useContext(TravelContext);
-  
+
   const travelFiltered = travels.filter((travel) =>
     travel.city_destination.toLowerCase().includes(search.toLowerCase())
   );

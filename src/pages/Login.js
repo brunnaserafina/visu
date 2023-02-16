@@ -16,9 +16,14 @@ export default function Login() {
   const handleGoogleLogin = async() => {
     try {
       const responseFirebase = await signInWithPopup(auth, providerGoogle);
-      console.log(responseFirebase);
 
-      postSignIn(responseFirebase.user.displayName, responseFirebase.user.email, responseFirebase.user.uid)
+      const body = {
+        name: responseFirebase.user.displayName,
+        email: responseFirebase.user.email,
+        password: responseFirebase.user.uid,
+      };
+
+      postSignIn(body)
         .catch(() => {
           toast('Tente novamente!');
         })

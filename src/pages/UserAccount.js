@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import styled from 'styled-components';
 import Menu from '../common/Menu';
@@ -10,6 +11,7 @@ export default function UserAccount() {
   const [favorites, setFavorites] = useState([]);
   const [viewHistoric, setViewHistoric] = useState(true);
   const [viewFavorite, setViewFavorite] = useState(false);
+  const navigate = useNavigate();
 
   const name = JSON.parse(localStorage.getItem('visu')).name;
   const email = JSON.parse(localStorage.getItem('visu')).email;
@@ -32,7 +34,6 @@ export default function UserAccount() {
       .catch(() => toast('Não foi possível carregar suas postagens favoritas. Tente novamente!'))
       .then((response) => {
         setFavorites(response.data);
-        console.log(response.data);
       });
   }, []);
 
@@ -46,8 +47,14 @@ export default function UserAccount() {
     setViewHistoric(true);
   }
 
+  function logout() {
+    localStorage.clear();
+    navigate('/');
+  }
+
   return (
     <>
+      <Logout onClick={logout}>Sair</Logout>
       <Wrapper>
         <ProfilePicture src={photo} />
         <h3>{name}</h3>
@@ -96,6 +103,18 @@ export default function UserAccount() {
     </>
   );
 }
+
+const Logout = styled.div`
+  width: 100vw;
+  text-align: end;
+  cursor: pointer;
+  padding: 3vw;
+  color: #666666;
+
+  :hover {
+    text-decoration: underline;
+  }
+`;
 
 const Message = styled.p`
   width: 100vw;

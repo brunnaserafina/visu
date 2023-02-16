@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useContext, useEffect } from 'react';
 import { toast } from 'react-toastify';
 import Menu from '../common/Menu';
 import TravelInfo from '../common/TravelInfo';
