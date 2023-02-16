@@ -21,6 +21,10 @@ export const Wrapper = styled.div`
     text-align: center;
     margin-bottom: 10px;
     color: #666666;
+
+    @media (min-width: 1000px) {
+      width: 20vw;
+    }
   }
 
   p {
@@ -44,6 +48,10 @@ export const Wrapper = styled.div`
     font-size: 18px;
     margin-bottom: 8px;
     font-weight: 600;
+
+    @media (min-width: 1000px) {
+      font-size: 22px;
+    }
   }
 
   input {
@@ -54,6 +62,10 @@ export const Wrapper = styled.div`
     border-radius: 15px;
     padding: 15px;
     text-align: center;
+
+    @media (min-width: 1000px) {
+      width: 20vw;
+    }
   }
 
   button {
@@ -79,5 +91,10 @@ export const Wrapper = styled.div`
     border: none;
     border-radius: 15px;
     padding: 25px;
+
+    @media (min-width: 1000px) {
+      width: 30vw;
+      height: 40vh;
+    }
   }
 `;
