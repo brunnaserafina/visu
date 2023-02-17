@@ -138,11 +138,19 @@ const ContainerHistoric = styled.span`
 const HistoricComponent = styled.h2`
   text-decoration: ${(props) => (props.viewHistoric ? 'underline' : 'none')};
   cursor: pointer;
+
+  @media (min-width: 1000px) {
+    font-size: 21px;
+  }
 `;
 
 const FavoriteComponent = styled.h2`
   text-decoration: ${(props) => (props.viewFavorite ? 'underline' : 'none')};
   cursor: pointer;
+
+  @media (min-width: 1000px) {
+    font-size: 21px;
+  }
 `;
 
 const Wrapper = styled.div`
@@ -156,10 +164,18 @@ const Wrapper = styled.div`
     color: #666666;
     font-weight: 700;
     margin-bottom: 1vw;
+
+    @media (min-width: 1000px) {
+      font-size: 25px;
+    }
   }
 
   p {
     color: #666666;
+
+    @media (min-width: 1000px) {
+      font-size: 20px;
+    }
   }
 `;
 
@@ -170,4 +186,12 @@ const ProfilePicture = styled.img`
   background-color: white;
   margin-top: 10vw;
   margin-bottom: 3vw;
+
+  @media (min-width: 1000px) {
+    margin-top: 5vh;
+
+    width: 150px;
+    height: 150px;
+    border-radius: 75px;
+  }
 `;
