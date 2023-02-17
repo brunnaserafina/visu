@@ -150,7 +150,8 @@ function ComponentTravel({
             <h3>Restaurantes:</h3>
             {restaurants.map((restaurant, index) => (
               <Display key={index}>
-                <h5>{restaurant.name}</h5> <span>{numberStarsByAvaliation(restaurant.avaliation)}</span>
+                <h5>{restaurant.name.replace(', Brasil', '')}</h5>{' '}
+                <span>{numberStarsByAvaliation(restaurant.avaliation)}</span>
               </Display>
             ))}
           </div>
@@ -168,9 +169,10 @@ function ComponentTravel({
         ) : (
           <div>
             <h3>Pontos turísticos:</h3>
-            {attractions.map((restaurant, index) => (
+            {attractions.map((attraction, index) => (
               <Display key={index}>
-                <h5>{restaurant.name}</h5> <span>{numberStarsByAvaliation(restaurant.avaliation)}</span>
+                <h5>{attraction.name.replace(', Brasil', '')}</h5>{' '}
+                <span>{numberStarsByAvaliation(attraction.avaliation)}</span>
               </Display>
             ))}
           </div>
