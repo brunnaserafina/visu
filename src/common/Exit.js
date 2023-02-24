@@ -86,4 +86,8 @@ const Confirm = styled.div`
   button:nth-child(2) {
     background-color: #90ee90;
   }
+
+  @media (min-width: 1000px) {
+    width: 25vw;
+  }
 `;

@@ -230,6 +230,7 @@ const OpenInfoPlace = styled.div`
   align-items: center;
   padding: 0 10px;
   justify-content: space-between;
+  cursor: pointer;
 
   @media (min-width: 1000px) {
     width: 40vw;

@@ -26,8 +26,8 @@ export default function TravelInfo({ index, id, name, city, date, avaliation, ce
   }
 
   return (
-    <Container alignLeft={alignLeft} center={center} onClick={openTravelPage}>
-      <span>
+    <Container alignLeft={alignLeft} center={center}>
+      <span onClick={openTravelPage}>
         <p>@{usernameByEmail}</p>
         <h1>{city.replace(', Brasil', '').replace(',', ' -')}</h1>
         <h2>{dateFormat}</h2>
@@ -65,7 +65,6 @@ const Stars = styled.h5`
 `;
 
 const Container = styled.div`
-  cursor: pointer;
   padding: 0 7vw;
   width: 100vw;
   display: flex;
@@ -97,6 +96,7 @@ const Container = styled.div`
     flex-direction: column;
     justify-content: space-evenly;
     align-items: center;
+    cursor: pointer;
 
     @media (min-width: 1000px) {
       width: 25vw;

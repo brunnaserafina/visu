@@ -97,9 +97,9 @@ const CreateNewPost = styled.div`
   }
 
   @media (min-width: 1000px) {
-    left: 25%;
+    left: 35%;
     top: 40%;
-    width: 50vw;
+    width: 30vw;
     border-radius: 25px;
     background-color: #e5e5e5;
 
