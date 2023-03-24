@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const BASE_URL = 'http://localhost:4001';
+const BASE_URL = 'https://api-visu.onrender.com';
 
 function createHeaders() {
   const token = JSON.parse(localStorage.getItem('visu')).token;

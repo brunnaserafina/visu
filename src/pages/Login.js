@@ -24,8 +24,9 @@ export default function Login() {
       };
 
       postSignIn(body)
-        .catch(() => {
+        .catch((err) => {
           toast('Tente novamente!');
+          console.log(err);
         })
         .then((response) => {
           localStorage.setItem(
@@ -40,6 +41,7 @@ export default function Login() {
           navigate('/Home');
         });
     } catch (err) {
+      console.log(err);
       toast('Não foi possível logar com sua conta. Tente novamente!');
     }
   };
