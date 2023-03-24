@@ -96,6 +96,7 @@ const Container = styled.div`
     flex-direction: column;
     justify-content: space-evenly;
     align-items: center;
+    padding: 5px;
     cursor: pointer;
 
     @media (min-width: 1000px) {
