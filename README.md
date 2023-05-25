@@ -14,8 +14,6 @@
 
 ###
 
-<p align="center">Acesse a aplicação => https://visu-beryl.vercel.app</p>
-
 
 ###
 
